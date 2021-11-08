@@ -13,6 +13,7 @@ while hint != "y" or "n":
     input("y or n only \n")
     if hint == "y" or "n":
         break 
+        
 # give the first number
 if hint == "y":
     num_list = seperate_int(random_pint)
@@ -22,12 +23,17 @@ elif hint == "n":
     print("Alright, I like human who don't take advyantage of me!\n")
 
 # player inputs the number
-player_number = int(input(f"Now, let's start! \n{player_name}, please give me a number between 0 - 500:\n"))
-while player_number != random_pint:
-    if int(player_number) > int(random_pint):
-        print("Too large!")
-    if int(player_number) < int(random_pint): 
-        print("Too small")
-    player_number = int(input("Another number\n"))
-if player_number == random_pint:
+while True:
+    try:
+        player_number = int(input(f"{player_name}, please give me a number between 0 - 500:\n"))
+    except ValueError:
+        print("Wrong input!")
+    else:
+        if player_number >= 0 and player_number <= 500:
+            break
+if int(player_number) > int(random_pint):
+    print("Too large!")
+if int(player_number) < int(random_pint): 
+    print("Too small")
+elif player_number == random_pint:
     print("Congrats, you guess the right number!")
